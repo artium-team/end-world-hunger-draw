@@ -85,5 +85,5 @@ function uploadToFirebase() {
     previousURI = png
 
     console.log(png)
-    ref.putString(png, 'data_url').then(snapshot => { console.log("Loaded!") })
+    ref.putString(png, 'data_url').then(snapshot => { document.getElementById("donate").innerHTML = "Thank you for donating your art!" })
 }
