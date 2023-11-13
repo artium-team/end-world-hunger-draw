@@ -21,7 +21,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 
-var pointsData = firebase.database().ref()
 var points = []
 
 var col = 0
@@ -36,10 +35,6 @@ function setup() {
     background(255)
     fill(col)
     noStroke()
-
-    pointsData.limitToLast(5000).on('child_added', function (point) {
-        points.push(point.val())
-    })
 
     mousePressed = drawPoint
     mouseDragged = drawPoint
@@ -58,11 +53,10 @@ function draw() {
 }
 
 async function drawPoint() {
-    await pointsData.push({ x: mouseX, y: mouseY, color: col, size: Math.floor(Math.random() * 15) + 5 })
+    points.push({ x: mouseX, y: mouseY, color: col, size: Math.floor(Math.random() * 15) + 5 })
 }
 
 function clearDrawing() {
-    pointsData.remove()
     points = []
 }
 
